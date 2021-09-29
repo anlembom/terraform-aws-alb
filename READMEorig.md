@@ -10,7 +10,7 @@ HTTP and HTTPS listeners with default actions:
 
 ```hcl
 module "alb" {
-  source  = "../../"
+  source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
   name = "my-alb"
@@ -71,7 +71,7 @@ HTTP to HTTPS redirect and HTTPS cognito authentication:
 
 ```hcl
 module "alb" {
-  source  = "../../"
+  source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
   name = "my-alb"
@@ -133,7 +133,7 @@ Cognito Authentication only on certain routes, with redirects for other routes:
 
 ```hcl
 module "alb" {
-  source  = "../../"
+  source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
   name = "my-alb"
@@ -214,7 +214,7 @@ When you're using ALB Listener rules, make sure that every rule's `actions` bloc
 
 ```hcl
 module "nlb" {
-  source  = "../../"
+  source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
   name = "my-nlb"
@@ -275,7 +275,7 @@ Sometimes you need to have a way to create ALB resources conditionally but Terra
 ```hcl
 # This LB will not be created
 module "lb" {
- source = "../../"
+ source = "terraform-aws-modules/alb/aws"
 
  create_lb = false
  # ... omitted
