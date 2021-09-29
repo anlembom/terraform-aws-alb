@@ -258,35 +258,8 @@ module "nlb" {
     Environment = "Test"
   }
 }
+
 ```
-
-## Assumptions
-
-It's recommended you use this module with [terraform-aws-vpc](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws), [terraform-aws-security-group](https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws), and [terraform-aws-autoscaling](https://registry.terraform.io/modules/terraform-aws-modules/autoscaling/aws/).
-
-## Notes
-
-1. Terraform AWS provider >= v2.39.0 (via Terraform >= 0.12) has [issue #16674](https://github.com/hashicorp/terraform-provider-aws/issues/16674) related to "Provider produced inconsistent final plan". It means that S3 bucket has to be created before referencing it as an argument inside `access_logs = { bucket = "my-already-created-bucket-for-logs" }`, so this won't work: `access_logs = { bucket = module.log_bucket.s3_bucket_id }`.
-
-## Conditional creation
-
-Sometimes you need to have a way to create ALB resources conditionally but Terraform does not allow to use `count` inside `module` block, so the solution is to specify argument `create_lb`.
-
-```hcl
-# This LB will not be created
-module "lb" {
- source = "../../"
-
- create_lb = false
- # ... omitted
-}
-```
-
-## Examples
-
-- [Complete Application Load Balancer](https://github.com/terraform-aws-modules/terraform-aws-alb/tree/master/examples/complete-alb)
-- [Complete Network Load Balancer](https://github.com/terraform-aws-modules/terraform-aws-alb/tree/master/examples/complete-nlb)
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
